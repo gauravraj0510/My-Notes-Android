@@ -3,6 +3,7 @@ package com.example.mynotes;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
+import android.view.View;
 
 public class LoginRegisterActivity extends AppCompatActivity {
 
@@ -11,4 +12,10 @@ public class LoginRegisterActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login_register);
     }
+
+    public void handleLoginRegister(View view)
+    {
+
+    }
+
 }
