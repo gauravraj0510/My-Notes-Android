@@ -110,6 +110,7 @@ public class MainActivity extends AppCompatActivity implements FirebaseAuth.Auth
                         }
                     });
         }
+        Log.d(TAG,"onAuthStateChanged: "+firebaseAuth.getCurrentUser().getPhoneNumber());
 
     }
 }
