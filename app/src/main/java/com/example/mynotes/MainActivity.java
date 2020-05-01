@@ -133,7 +133,7 @@ public class MainActivity extends AppCompatActivity implements FirebaseAuth.Auth
                 return true;
 
             case R.id.action_profile:
-                Toast.makeText(this, "Profile", Toast.LENGTH_SHORT).show();
+                startActivity(new Intent(MainActivity.this, ProfileActivity.class));
                 return true;
 
         }

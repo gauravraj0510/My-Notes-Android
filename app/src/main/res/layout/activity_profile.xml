@@ -7,15 +7,17 @@
     tools:context=".ProfileActivity">
 
     <de.hdodenhof.circleimageview.CircleImageView
-        android:id="@+id/circleImageView"
-        android:layout_width="100dp"
-        android:layout_height="100dp"
+        android:id="@+id/profileImageView"
+        android:layout_width="96dp"
+        android:layout_height="96dp"
         android:layout_marginStart="16dp"
         android:layout_marginLeft="16dp"
         android:layout_marginTop="16dp"
         android:src="@drawable/notes"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        android:onClick="handleImageClick"
+        />
 
     <com.google.android.material.textfield.TextInputLayout
         android:layout_width="0dp"
@@ -24,21 +26,20 @@
         android:layout_marginLeft="16dp"
         android:layout_marginEnd="16dp"
         android:layout_marginRight="16dp"
-        app:layout_constraintBottom_toBottomOf="@+id/circleImageView"
+        app:layout_constraintBottom_toBottomOf="@+id/profileImageView"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/circleImageView"
-        app:layout_constraintTop_toTopOf="@+id/circleImageView">
+        app:layout_constraintStart_toEndOf="@+id/profileImageView"
+        app:layout_constraintTop_toTopOf="@+id/profileImageView">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/displayNameEditText"
-            android:layout_width="289dp"
-            android:layout_height="48dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
             android:hint="Display Name" />
     </com.google.android.material.textfield.TextInputLayout>
 
     <Button
         android:id="@+id/updateProfileButton"
-        android:onClick="updateProfile"
         style="@style/Widget.AppCompat.Button.Colored"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
@@ -47,11 +48,12 @@
         android:layout_marginTop="32dp"
         android:layout_marginEnd="16dp"
         android:layout_marginRight="16dp"
+        android:onClick="updateProfile"
         android:text="Update Profile"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/circleImageView" />
+        app:layout_constraintTop_toBottomOf="@+id/profileImageView" />
 
     <ProgressBar
         android:id="@+id/progressBar"
@@ -62,6 +64,5 @@
         app:layout_constraintEnd_toEndOf="@+id/updateProfileButton"
         app:layout_constraintStart_toStartOf="@+id/updateProfileButton"
         app:layout_constraintTop_toTopOf="@+id/updateProfileButton" />
-
 
 </androidx.constraintlayout.widget.ConstraintLayout>
