@@ -1,12 +1,14 @@
 package com.example.mynotes;
 
 import android.text.format.DateFormat;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
@@ -59,16 +61,30 @@ public class NotesRecyclerAdapter extends FirestoreRecyclerAdapter<Note, NotesRe
                 public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                     DocumentSnapshot snapshot = getSnapshots().getSnapshot(getAdapterPosition());
                     Note note = getItem(getAdapterPosition());
-                    if(note.getCompleted()!=isChecked) {
+                    if (note.getCompleted() != isChecked) {
                         noteListener.handleCheckChanged(isChecked, snapshot);
-
                     }
                 }
             });
+
+            itemView.setOnClickListener(new View.OnClickListener() {
+                private static final String TAG = "" ;
+
+                @Override
+                public void onClick(View v) {
+                    DocumentSnapshot snapshot = getSnapshots().getSnapshot(getAdapterPosition());
+                    noteListener.handleEditNotes(snapshot);
+                }
+            });
+        }
+        public void deleteItem(){
+            noteListener.handleDeleteItem(getSnapshots().getSnapshot(getAdapterPosition()));
         }
     }
 
     interface NoteListener{
         public void handleCheckChanged(boolean isChecked, DocumentSnapshot snapshot);
+        public void handleEditNotes(DocumentSnapshot snapshot);
+        public void handleDeleteItem(DocumentSnapshot snapshot);
     }
 }
