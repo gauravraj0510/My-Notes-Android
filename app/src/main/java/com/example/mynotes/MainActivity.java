@@ -1,5 +1,6 @@
 package com.example.mynotes;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 
@@ -13,6 +14,7 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.GetTokenResult;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.RecyclerView;
@@ -21,6 +23,7 @@ import android.util.Log;
 import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.EditText;
 import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity implements FirebaseAuth.AuthStateListener {
@@ -41,11 +44,27 @@ public class MainActivity extends AppCompatActivity implements FirebaseAuth.Auth
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
+                showAlertDialog();
             }
         });
     }
+
+    private void showAlertDialog(){
+        final EditText noteEditText = new EditText(this);
+
+        new AlertDialog.Builder(this)
+                .setTitle("Add a Note...")
+                .setView(noteEditText)
+                .setPositiveButton("Add", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+
+                    }
+                })
+                .setNegativeButton("Cancel",null)
+                .show();
+    }
+
     private void startLoginActivity()
     {
         Intent intent = new Intent(this,LoginRegisterActivity.class);
