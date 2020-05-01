@@ -169,7 +169,9 @@ public class MainActivity extends AppCompatActivity implements FirebaseAuth.Auth
 
         Query query = FirebaseFirestore.getInstance()
                 .collection("notes")
-                .whereEqualTo("userId", user.getUid());
+                .whereEqualTo("userId", user.getUid())
+                .orderBy("completed", Query.Direction.ASCENDING)
+                .orderBy("created", Query.Direction.DESCENDING);
 
         FirestoreRecyclerOptions<Note> options = new FirestoreRecyclerOptions.Builder<Note>()
                 .setQuery(query, Note.class)
@@ -192,7 +194,6 @@ public class MainActivity extends AppCompatActivity implements FirebaseAuth.Auth
          @Override
          public void onSwiped(@NonNull RecyclerView.ViewHolder viewHolder, int direction) {
              if(direction==ItemTouchHelper.LEFT){
-                 Toast.makeText(MainActivity.this, "deleted", Toast.LENGTH_SHORT).show();
                  NotesRecyclerAdapter.NoteViewHolder noteViewHolder = (NotesRecyclerAdapter.NoteViewHolder) viewHolder;
                  noteViewHolder.deleteItem();
              }
