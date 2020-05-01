@@ -24,7 +24,7 @@
         android:fontFamily="cursive"
         android:text="My Notes"
         android:textAppearance="@style/TextAppearance.AppCompat.Body2"
-        android:textSize="36sp"
+        android:textSize="50sp"
         app:layout_constraintBottom_toTopOf="@+id/imageView"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"

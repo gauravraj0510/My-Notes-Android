@@ -202,7 +202,7 @@ public class MainActivity extends AppCompatActivity implements FirebaseAuth.Auth
          @Override
          public void onChildDraw(@NonNull Canvas c, @NonNull RecyclerView recyclerView, @NonNull RecyclerView.ViewHolder viewHolder, float dX, float dY, int actionState, boolean isCurrentlyActive) {
              new RecyclerViewSwipeDecorator.Builder(c, recyclerView, viewHolder, dX, dY, actionState, isCurrentlyActive)
-                     .addBackgroundColor(ContextCompat.getColor(MainActivity.this, R.color.colorAccent))
+                     .addBackgroundColor(ContextCompat.getColor(MainActivity.this, R.color.design_default_color_error))
                      .addActionIcon(R.drawable.ic_delete_black_24dp)
                      .create()
                      .decorate();
