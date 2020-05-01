@@ -5,6 +5,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.CheckBox;
+import android.widget.CompoundButton;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -12,11 +13,16 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.firebase.ui.firestore.FirestoreRecyclerAdapter;
 import com.firebase.ui.firestore.FirestoreRecyclerOptions;
+import com.firebase.ui.firestore.ObservableSnapshotArray;
+import com.google.firebase.firestore.DocumentSnapshot;
 
 public class NotesRecyclerAdapter extends FirestoreRecyclerAdapter<Note, NotesRecyclerAdapter.NoteViewHolder> {
 
-    public NotesRecyclerAdapter(@NonNull FirestoreRecyclerOptions<Note> options) {
+    NoteListener noteListener;
+
+    public NotesRecyclerAdapter(@NonNull FirestoreRecyclerOptions<Note> options, NoteListener noteListener) {
         super(options);
+        this.noteListener = noteListener;
     }
 
     @Override
@@ -47,6 +53,22 @@ public class NotesRecyclerAdapter extends FirestoreRecyclerAdapter<Note, NotesRe
             noteTextView = itemView.findViewById(R.id.noteTextView);
             dateTextView = itemView.findViewById(R.id.dateTextView);
             checkBox = itemView.findViewById(R.id.checkBox);
+
+            checkBox.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+                @Override
+                public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                    DocumentSnapshot snapshot = getSnapshots().getSnapshot(getAdapterPosition());
+                    Note note = getItem(getAdapterPosition());
+                    if(note.getCompleted()!=isChecked) {
+                        noteListener.handleCheckChanged(isChecked, snapshot);
+
+                    }
+                }
+            });
         }
+    }
+
+    interface NoteListener{
+        public void handleCheckChanged(boolean isChecked, DocumentSnapshot snapshot);
     }
 }
