@@ -17,7 +17,7 @@ This app is built to practice Firebase implementation and also to learn storing 
 
 
 ## Download
-<a href='https://github.com/gauravraj0510/My-Notes-Android/releases'>
+<a href='https://github.com/gauravraj0510/My-Notes-Android/releases/download/MyNotesAPK/MyNotes_v1.0.apk'>
 <img alt='Download from release' src='https://www.inspirefm.org/wp-content/uploads/button-apk.png' width=200>
 </a>
 
