@@ -10,11 +10,11 @@ This app is built to practice Firebase implementation and also to learn storing 
  
 ## Example Pictures
 <div>
- <img src='Examples/login.jpg' width='200'>
- <img src='Examples/loginTypes.jpg' width='200'>
- <img src='Examples/profile.jpg' width='200'>
- <img src='Examples/addNote.jpg' width='200'>
- <img src='Examples/delete.jpg' width='200'>
+ <img src='Examples/login.jpg' width='200' height='400'>
+ <img src='Examples/loginTypes.jpg' width='200' height='400'>
+ <img src='Examples/profile.jpg' width='200' height='400'>
+ <img src='Examples/addNote.jpg' width='200' height='400'>
+ <img src='Examples/delete.jpg' width='200' height='400'>
 </div>
 
 
