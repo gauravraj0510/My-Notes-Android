@@ -32,7 +32,7 @@ public class NotesRecyclerAdapter extends FirestoreRecyclerAdapter<Note, NotesRe
         holder.noteTextView.setText(note.getText());
         holder.checkBox.setChecked(note.getCompleted());
         CharSequence dateCharSeq = DateFormat.format("EEEE, MMM d, yyyy h:mm:ss a", note.getCreated().toDate());
-        holder.dateTextView.setText(dateCharSeq);
+        holder.dateTextView.setText("Created: "+dateCharSeq);
     }
 
     @NonNull

@@ -31,6 +31,7 @@ import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.text.format.DateFormat;
 import android.util.Log;
 import android.view.View;
 import android.view.Menu;
@@ -47,6 +48,7 @@ public class MainActivity extends AppCompatActivity implements FirebaseAuth.Auth
     private static final String TAG = "MainActivity";
     RecyclerView recyclerView;
     NotesRecyclerAdapter notesRecyclerAdapter;
+    public int state=1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -229,9 +231,11 @@ public class MainActivity extends AppCompatActivity implements FirebaseAuth.Auth
 
     @Override
     public void handleEditNotes(final DocumentSnapshot snapshot) {
+
         final Note note = snapshot.toObject(Note.class);
         final EditText editText = new EditText(this);
         editText.setText(note.getText().toString());
+
         editText.setSelection(note.getText().length());
         new AlertDialog.Builder(this)
                 .setTitle("Edit Note")
@@ -253,6 +257,7 @@ public class MainActivity extends AppCompatActivity implements FirebaseAuth.Auth
                 })
                 .setNegativeButton("Cancel", null)
                 .show();
+        state=2;
 
     }
 
