@@ -1,29 +1,31 @@
 package com.example.mynotes;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
-import com.firebase.ui.auth.AuthUI;
-import com.google.android.gms.auth.api.Auth;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.UserProfileChangeRequest;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
@@ -40,6 +42,8 @@ public class ProfileActivity extends AppCompatActivity {
     TextInputEditText displayNameEditText;
     Button updateProfileButton;
     ProgressBar progressBar;
+    EditText editText;
+
 
     String DISPLAY_NAME = null;
     String PROFILE_IMAGE_URL = null;
@@ -54,6 +58,9 @@ public class ProfileActivity extends AppCompatActivity {
         displayNameEditText = findViewById(R.id.displayNameEditText);
         updateProfileButton = findViewById(R.id.updateProfileButton);
         progressBar = findViewById(R.id.progressBar);
+        editText = findViewById(R.id.descEditText);
+        editText.setFocusable(false);
+        editText.setPaintFlags(View.INVISIBLE);
 
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
 
@@ -188,4 +195,46 @@ public class ProfileActivity extends AppCompatActivity {
                     }
                 });
     }
+
+    public void handleDescription(View view) {
+        final EditText descEditText = new EditText(this);
+        String prevText = editText.getText().toString();
+        descEditText.setText(prevText);
+        descEditText.setSelection(prevText.length());
+        new AlertDialog.Builder(this)
+                .setTitle("Add your description...")
+                .setView(descEditText)
+                .setPositiveButton("Save", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        addDesc(descEditText.getText().toString());
+                        editText.setText(descEditText.getText());
+                    }
+                })
+                .setNegativeButton("Cancel",null)
+                .show();
+
+    }
+
+    private void addDesc(String text) {
+        String userId = FirebaseAuth.getInstance().getCurrentUser().getUid();
+        Description description = new Description(text, userId);
+
+        FirebaseFirestore.getInstance().collection("users")
+                .add(description)
+                .addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
+                    @Override
+                    public void onSuccess(DocumentReference documentReference) {
+
+                    }
+                })
+                .addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+                        Toast.makeText(ProfileActivity.this, e.getLocalizedMessage(), Toast.LENGTH_SHORT).show();
+                    }
+                });
+
+    }
+
 }

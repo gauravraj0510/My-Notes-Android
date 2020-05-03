@@ -9,7 +9,6 @@
         android:roundIcon="@drawable/yinyang"
         android:supportsRtl="true"
         android:theme="@style/AppTheme" >
-
         <activity android:name=".ProfileActivity" />
         <activity android:name=".LoginRegisterActivity" />
         <activity
