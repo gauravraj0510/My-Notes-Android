@@ -48,7 +48,7 @@ public class MainActivity extends AppCompatActivity implements FirebaseAuth.Auth
     private static final String TAG = "MainActivity";
     RecyclerView recyclerView;
     NotesRecyclerAdapter notesRecyclerAdapter;
-    public int state=1;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -204,7 +204,7 @@ public class MainActivity extends AppCompatActivity implements FirebaseAuth.Auth
          @Override
          public void onChildDraw(@NonNull Canvas c, @NonNull RecyclerView recyclerView, @NonNull RecyclerView.ViewHolder viewHolder, float dX, float dY, int actionState, boolean isCurrentlyActive) {
              new RecyclerViewSwipeDecorator.Builder(c, recyclerView, viewHolder, dX, dY, actionState, isCurrentlyActive)
-                     .addBackgroundColor(ContextCompat.getColor(MainActivity.this, R.color.design_default_color_error))
+                     .addBackgroundColor(ContextCompat.getColor(MainActivity.this, R.color.red))
                      .addActionIcon(R.drawable.ic_delete_black_24dp)
                      .create()
                      .decorate();
@@ -257,8 +257,6 @@ public class MainActivity extends AppCompatActivity implements FirebaseAuth.Auth
                 })
                 .setNegativeButton("Cancel", null)
                 .show();
-        state=2;
-
     }
 
     @Override

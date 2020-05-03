@@ -49,6 +49,7 @@
         android:layout_marginRight="16dp"
         android:onClick="updateProfile"
         android:text="Update Profile"
+        android:backgroundTint="@android:color/holo_red_light"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
