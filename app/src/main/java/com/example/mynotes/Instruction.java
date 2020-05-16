@@ -16,6 +16,7 @@ public class Instruction extends AppCompatActivity {
         setContentView(R.layout.activity_instruction);
 
         instructionButton = findViewById(R.id.instruction_button);
+        //
     }
 
     public void gotIt(View view) {
