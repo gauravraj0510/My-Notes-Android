@@ -3,7 +3,7 @@
 # My Notes
 
 
-This app is built to practice Firebase implementation and also to learn storing data on cloud
+This app is built for practising Firebase implementation and also to learn storing data on cloud
 ## Features 
  - Online sync and Real time updates 
  - Data is saved on cloud hence no internal memory of the phone is used  
